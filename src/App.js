@@ -25,19 +25,23 @@ class App extends Component {
   }
 
   fetchIdea() {
-  for (var i = 0; i < localStorage.length; i++){
+    const oldIdeas = []
+    for (var i = 0; i < localStorage.length; i++){
     var retrieveObject = localStorage.getItem(localStorage.key(i));
     var parsedObject = JSON.parse(retrieveObject);
-    console.log(parsedObject)}
-
+    console.log(parsedObject)
+    oldIdeas.push(parsedObject)
+  } 
+  this.setState({ideas: oldIdeas})  
 }
 
 addIdea(idea) {
   this.setState({ideas: [idea, ...this.state.ideas]})
+  // this.setState((state) => {ideas: [state.ideas.idea]})
 }
   
-
   render() {
+    if (!localStorage.ideas) {
     return (
       <div className="App">
         <header className="App-header">
@@ -55,24 +59,15 @@ addIdea(idea) {
           </form>
         </section>
         <section>
-          <ul >
+          <ul className="list">
            {
             this.state.ideas.map((idea, i) => {
               return <Card cardName={idea.cardName} cardBody={idea.cardBody} key={i}/>
             })
            }
-
           </ul>
-        </section>
-
-        
-        {/*<section >
-          
-          
-            
-             
-
-            
+        </section>      
+        {/*<section >         
             <button id="button-save" class="input-fields" aria-labelledby="save idea">save</button>
           
         </section>
@@ -83,6 +78,7 @@ addIdea(idea) {
         </ul>*/}
     </div>
     );
+  }
   }
 }
 

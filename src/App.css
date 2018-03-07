@@ -82,6 +82,10 @@ h1 {
   display: block;
 }
 
+.list {
+  list-style: none;
+}
+
 .card {
   margin: 1em 1.4em 0em 1.4em;
   border-bottom: 1px solid #D1D3D4;
