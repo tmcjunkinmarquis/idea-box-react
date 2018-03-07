@@ -16,6 +16,8 @@ class App extends Component {
     }
   this.fetchIdea = this.fetchIdea.bind(this);
   this.addIdea = this.addIdea.bind(this);
+  this.removeIdea = this.removeIdea.bind(this);
+  this.updateQuality = this.updateQuality.bind(this);
 
   }
 
@@ -37,6 +39,17 @@ class App extends Component {
 addIdea(idea) {
   this.setState({ideas: [idea, ...this.state.ideas]})
   // this.setState((state) => {ideas: [state.ideas.idea]})
+}
+
+removeIdea(uniqueID) {
+  const filteredIeas = this.state.ideas.filter((idea) => {
+    return idea.uniqueID !== uniqueID
+  })
+  this.setState({ideas: filteredIeas})
+}
+
+updateQuality(id) {
+  console.log('button clicked')
 }
   
   render() {
@@ -64,7 +77,7 @@ addIdea(idea) {
           <ul className="list">
            {
             this.state.ideas.map((idea, i) => {
-              return <Card cardName={idea.cardName} cardBody={idea.cardBody} key={i}/>
+              return <Card updateQuality={this.updateQuality} removeIdea={this.removeIdea} uniqueID={idea.uniqueID} cardName={idea.cardName} cardBody={idea.cardBody} key={i}/>
             })
            }
           </ul>

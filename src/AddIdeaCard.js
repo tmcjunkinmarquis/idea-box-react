@@ -10,7 +10,8 @@ class AddIdeaCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cardExists: false,
+      uniqueID: Date.now(),// default is necessary for the first idea after a refresh
+      quality: 'swill',
       cardName: '',
       cardBody: ''
     };
@@ -20,19 +21,25 @@ class AddIdeaCard extends React.Component {
     this.cardNameStateChange = this.cardNameStateChange.bind(this);
     this.cardBodyStateChange = this.cardBodyStateChange.bind(this);
     this.clearInputFields = this.clearInputFields.bind(this);
-
   }
  
-
-
   cardToLocalStorage(event) {
     event.preventDefault()
     this.clearInputFields()
-    localStorage.setItem(Date.now(), JSON.stringify({cardName: this.state.cardName, cardBody: this.state.cardBody}))
-    this.setState({ cardName: '',
-                        cardBody: ''
-
+    this.setState({
+      uniqueID: Date.now(),//only sets after local storage has been set
         })
+    localStorage.setItem(this.state.uniqueID, JSON.stringify({
+      uniqueID: this.state.uniqueID,
+      quality: this.state.quality,
+      cardName: this.state.cardName, 
+      cardBody: this.state.cardBody
+    }))
+    this.setState({
+      cardName: '',
+      cardBody: ''
+        })
+    
     this.props.addIdea({cardName: this.state.cardName, cardBody: this.state.cardBody})
   }
 
