@@ -29,7 +29,6 @@ class App extends Component {
     for (var i = 0; i < localStorage.length; i++){
     var retrieveObject = localStorage.getItem(localStorage.key(i));
     var parsedObject = JSON.parse(retrieveObject);
-    console.log(parsedObject)
     oldIdeas.push(parsedObject)
   } 
   this.setState({ideas: oldIdeas})  
@@ -58,6 +57,9 @@ addIdea(idea) {
             
           </form>
         </section>
+        <section className="search-container" role="search">
+          <input type="search" className="input-fields" id="input-search" placeholder="Search" />
+        </section>
         <section>
           <ul className="list">
            {
@@ -67,15 +69,6 @@ addIdea(idea) {
            }
           </ul>
         </section>      
-        {/*<section >         
-            <button id="button-save" class="input-fields" aria-labelledby="save idea">save</button>
-          
-        </section>
-        <section class="search-container" role="search">
-          <input type="search" class="input-fields" id="input-search" placeholder="Search" />
-        </section>
-        <ul class="ideas-container" role="main">
-        </ul>*/}
     </div>
     );
   }
