@@ -3,17 +3,23 @@ import React from 'react';
 class Card extends React.Component {
   constructor(props) {
     super(props);
-    this.uniqueID = this.props.uniqueID
-
-  this.state = {} 
   
   this.handleDeleteClick = this.handleDeleteClick.bind(this);
+  this.handleUpVoteClick = this.handleUpVoteClick.bind(this);
+  this.handleDownVoteClick = this.handleDownVoteClick.bind(this);
   }
 
   handleDeleteClick() {
-    this.props.removeIdea(this.uniqueID)
+    this.props.removeIdea(this.props.uniqueID)
   }
-  
+
+  handleUpVoteClick() {
+    this.props.updateQuality(this.props.uniqueID, this.props.quality)
+  }
+
+  handleDownVoteClick() {
+    this.props.updateQuality(this.props.uniqueID, this.props.quality)
+  }
 
   render() {
     return (
@@ -25,11 +31,17 @@ class Card extends React.Component {
           id="delete-idea">
           </button>
         <p className="ideas-content">{this.props.cardBody}</p>
-        <button className="circle-buttons button-upvote" id="upvote-idea"></button>
-        <button className="circle-buttons button-downvote" id="downvote-idea"></button>
+        <button 
+          className="circle-buttons button-upvote" 
+          id="upvote-idea"
+          onClick={this.handleUpVoteClick}></button>
+        <button 
+          className="circle-buttons button-downvote" 
+          id="downvote-idea"
+          onClick={this.handleDownVoteClick}></button>
         <h5 className="rating">
           <span>quality:</span>
-          <span id="span-quality"></span>
+          <span id="span-quality">{this.props.quality}</span>
         </h5> 
       </li>
     )

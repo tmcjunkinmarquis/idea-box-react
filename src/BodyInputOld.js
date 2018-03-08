@@ -16,7 +16,7 @@ class BodyInput extends React.Component {
 }
 
   userInputsBody(event) {
-    this.props.bodyProp(event.target.value)
+    this.props.cardBodyStateChange(event.target.value)
   }
 
   

@@ -1,8 +1,5 @@
 import React from 'react'
-
 import './App.css';
-
-
 
 class SaveButton extends React.Component {
   constructor(props) {
@@ -11,23 +8,16 @@ class SaveButton extends React.Component {
     };
   }
 
-
-
-
-
   render() {
     return (
       <button id="button-save"
         className="input-fields"
         aria-labelledby="save idea"
-        onClick={this.props.buttonProp}>
+        onClick={this.props.createCard}>
         save
       </button>
     )
   }
 }
-
-
-
 
 export default SaveButton;
