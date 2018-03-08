@@ -16,7 +16,7 @@ class NameInput extends React.Component {
 }
 
   userInputsName(event) {
-    this.props.nameProp(event.target.value)
+    this.props.cardNameStateChange(event.target.value)
   }
 
   clearUserInputs(event) {
