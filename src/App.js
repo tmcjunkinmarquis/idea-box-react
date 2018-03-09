@@ -43,7 +43,18 @@ class App extends Component {
     this.setState({ ideas: filteredIeas })
   }
 
-  updateQuality(uniqueID, quality) {
+  updateQuality(updatedIdea) {
+    const index = this.state.ideas.findIndex((idea) => {
+      return idea.uniqueID === updatedIdea.uniqueID;
+    })
+    let ideas = [
+      ...this.state.ideas.slice(0,index),
+      updatedIdea,
+      ...this.state.ideas.slice(index + 1)
+    ];
+
+    this.setState({ ideas })
+
     console.log('button clicked')
   }
 
@@ -72,10 +83,7 @@ class App extends Component {
                 return <Card
                   removeIdea={this.removeIdea}
                   updateQuality={this.updateQuality}
-                  uniqueID={idea.uniqueID}
-                  cardName={idea.name}
-                  cardBody={idea.body}
-                  quality={idea.quality}
+                  idea = {idea}
                   key={i} />
               })
             }
